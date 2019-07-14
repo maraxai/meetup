@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { shallow } from 'enzyme';
+import Event from '../Event';
 
-class Event extends Component {
-  state = {
-    showDetails: false,
-    events: [
+describe('<Event />, component', () => {
+  let EventWrapper;
+
+  beforeAll(() => {
+    EventWrapper = shallow(<Event event={
       {
         "created": 1555489012000,
         "duration": 7200000,
@@ -50,29 +53,35 @@ class Event extends Component {
         "how_to_find_us": "Entrance is directly on Hansaallee, it's the big brick building",
         "visibility": "public"
       }
-    ]
-  };
+    }/>);
+  });
 
-  render() {
-    return (
-      <div className="events">
-        <ul className="event-list">
-          {this.state.events.map(event =>
-          <li key={event.id}>
-            <div>
-              <span className="event_time">{event.local_time}</span>
-              <span className="event_date">{event.local_date}</span>
-              <div className="event_name">{event.name}</div>
-              <div className="group_name">GROUP: {event.group.name}</div>
-              <div className="event_rsvp">{event.yes_rsvp_count} will attend this meeting</div>
+  test('render list of events', () => {
+    expect(EventWrapper.find('.event-list')).toHaveLength(1);
+  });
 
-            </div>
-          </li>
-          )}
-        </ul>
-      </div>
-    )
-  }
-}
+  test('render event data', () => {
+    EventWrapper.find('.event-list li');
+    expect(EventWrapper.state('showDetails')).toBe(false);
+  });
 
-export default Event;
+  test('render event time', () => {
+    const events = EventWrapper.state('events');
+    expect(EventWrapper.find('.local_time')).toBe("19:00");
+  });
+
+  test('render event date', () => {
+    const events = EventWrapper.state('events');
+    expect(EventWrapper.find('.local_date')).toBe(events[0].local_date);
+  });
+
+  test('render group name', () => {
+    const events = EventWrapper.state('events');
+    expect(EventWrapper.find('.group_name')).toBe(events[0].group.name);
+  });
+
+  test('render group name', () => {
+    const events = EventWrapper.state('events');
+    expect(EventWrapper.find('.event_rsvp')).toBe(events[0].yes_rsvp_count);
+  });
+})
