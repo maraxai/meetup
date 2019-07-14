@@ -53,18 +53,38 @@ class Event extends Component {
     ]
   };
 
+  handleClick = () => {
+    this.setState({ showDetails: !this.state.showDetails })
+  }
+
   render() {
     return (
       <div className="events">
         <ul className="event-list">
           {this.state.events.map(event =>
-          <li key={event.id}>
+          <li key={event.id}>{event.local_time}
             <div>
               <span className="event_time">{event.local_time}</span>
               <span className="event_date">{event.local_date}</span>
               <div className="event_name">{event.name}</div>
               <div className="group_name">GROUP: {event.group.name}</div>
               <div className="event_rsvp">{event.yes_rsvp_count} will attend this meeting</div>
+              <div className="eventDetails">
+                <div className="address">
+                  <span>{event.venue.name},</span>
+                  <span>{event.venue.address_1},</span>
+                  <span>{event.venue.address_2},</span>
+                  <span>{event.venue.address_3},</span>
+                  <span>{event.venue.city},</span>
+                  <span>{event.venue.localized_country_name}</span>
+                </div>
+                <div>
+                  <div className="description">{event.description}</div>
+                  <div className="visibility">{event.visibility}</div>
+                  <div className="link">{event.link}</div>
+                </div>
+              </div>
+              <button className="showDetails" onClick={this.handleClick}>more Details</button>
 
             </div>
           </li>
