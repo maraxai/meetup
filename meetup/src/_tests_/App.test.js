@@ -4,6 +4,7 @@ import App from '../App';
 import EventList from '../EventList';
 import CitySearch from '../CitySearch';
 import Event from '../Event';
+import NumberOfEvents from '../NumberOfEvents';
 
 describe('<App /> component', () => {
   let AppWrapper;
@@ -22,5 +23,9 @@ describe('<App /> component', () => {
 
   test('render Event', () => {
     expect(AppWrapper.find(Event)).toHaveLength(1);
+  });
+
+  test('render NumberOfEvents', () => {
+    expect(AppWrapper.find(NumberOfEvents)).toHaveLength(1);
   });
 });

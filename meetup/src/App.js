@@ -3,6 +3,7 @@ import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import Event from './Event';
+import NumberOfEvents from './NumberOfEvents';
 
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
         <CitySearch />
         <EventList />
         <Event />
+        <NumberOfEvents />
       </div>
     );
   }
