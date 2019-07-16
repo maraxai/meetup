@@ -44,7 +44,7 @@ describe('<Event />, component', () => {
 
   test('details', () => {
     const events = EventWrapper.state('showDetails');
-    expect(EventWrapper.state('showDetails')).toBe(false);
+    expect(events).toBe(false);
   });
 
   test('click on button should change of state for showDetails', () => {

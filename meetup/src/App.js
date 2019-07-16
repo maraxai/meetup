@@ -4,13 +4,15 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import Event from './Event';
 import NumberOfEvents from './NumberOfEvents';
+import { getSuggetions } from './api';
+import { mockEvents } from './mock-events';
 
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <CitySearch />
+        <CitySearch updateEvents={this.updateEvents} />
         <EventList />
         <Event />
         <NumberOfEvents />

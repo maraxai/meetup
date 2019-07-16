@@ -35,5 +35,12 @@
   },
   "devDependencies": {
     "gh-pages": "^2.0.1"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/*.js",
+      "!src/index.js",
+      "!src/serviceWorker.js"
+    ]
   }
 }

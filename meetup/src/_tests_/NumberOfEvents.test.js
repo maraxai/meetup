@@ -22,8 +22,13 @@ describe('<NumberOfEvents />, component', () => {
     expect(NumberOfEventsWrapper.find('.numOfEventsListed').prop('value')).toBe(currentState);
   });
 
+  test('textbox render is of type "number"', () => {
+    const textBoxEntry = NumberOfEventsWrapper.find('.numOfEventsListed').prop('value');
+    expect(typeof textBoxEntry).toMatch('number');
+  });
+
   test('textbox render is positive number', () => {
-  expect(NumberOfEventsWrapper.find('.numOfEventsListed').prop('value')).toBeGreaterThan(0);
+    expect(NumberOfEventsWrapper.find('.numOfEventsListed').prop('value')).toBeGreaterThan(0);
   });
 
   test('change state when number input changes', () => {
