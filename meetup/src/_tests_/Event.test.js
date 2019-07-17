@@ -20,22 +20,22 @@ describe('<Event />, component', () => {
 
   test('render event time', () => {
     const events = EventWrapper.state('events');
-    expect(events[0].local_time).toBe("19:00");
+    expect(events[0].local_time).toBe("18:30");
   });
 
   test('render event date', () => {
     const events = EventWrapper.state('events');
-    expect(events[0].local_date).toBe("2019-08-06");
+    expect(events[0].local_date).toBe("2019-07-31");
   });
 
   test('render group name', () => {
     const events = EventWrapper.state('events');
-    expect(events[0].group.name).toBe("Angular Frankfurt");
+    expect(events[0].group.name).toBe("Serverless Munich");
   });
 
   test('render rsrv count', () => {
     const events = EventWrapper.state('events');
-    expect(events[0].yes_rsvp_count).toBe(31);
+    expect(events[0].yes_rsvp_count).toBe(47);
   });
 
   test('render detail button', () => {
