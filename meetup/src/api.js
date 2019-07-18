@@ -1,3 +1,5 @@
+import { mockEvents } from './mock-events';
+
 // this function serves as a mock API, like all APIs, this function also has to be asynchronous
 async function getSuggestions(query) {
   return (
@@ -25,4 +27,8 @@ async function getSuggestions(query) {
   );
 }
 
-export { getSuggestions };
+async function getEvents(lat, lon) {
+  return mockEvents.events;
+}
+
+export { getSuggestions, getEvents };

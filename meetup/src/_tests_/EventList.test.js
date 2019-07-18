@@ -13,7 +13,7 @@ describe('<EventList />, component', () => {
   test('render correct list of events', () => {
     const AppWrapper = mount(<App />);
     AppWrapper.setState({events: [{ id: 1 }, { id:2 }, { id: 3 }, { id: 4 }] });
-    expect(AppWrapper.find('.event-list')).toHaveLength(4);
+    expect(AppWrapper.find('.ul-eventlist')).toHaveLength(4);
     AppWrapper.unmount();
   });
 });
