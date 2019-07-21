@@ -15,8 +15,12 @@ class App extends Component {
     numOfEventsListed: null
   }
 
+  componentDidMount() {
+    this.updateEvents();
+  }
+
   updateEvents = (lat, lon, page) => {
-    getEvents(lat, lon, page).then(events => this.setState({ events }));
+    getEvents(lat, lon, page).then(events => this.setState({ events, lat, lon }));
   }
 
   render() {
@@ -24,7 +28,7 @@ class App extends Component {
       <div className="App">
         <CitySearch updateEvents={this.updateEvents} />
         <EventList events={this.state.events}/>
-        <NumberOfEvents numOfEventsListed={this.state.numOfEventsListed}/>
+        <NumberOfEvents updateEvents={this.updateEvents}/>
       </div>
     );
   }

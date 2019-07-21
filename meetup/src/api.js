@@ -89,7 +89,6 @@ async function getSuggestions(query) {
 }
 
 async function getEvents(lat, lon, page) {
-
   if (window.location.href.startsWith('http://localhost')) {
     return mockEvents.events;
   }
