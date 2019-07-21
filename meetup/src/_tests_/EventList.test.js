@@ -3,17 +3,19 @@ import { shallow, mount } from 'enzyme';
 import EventList from '../EventList';
 import Event from '../Event';
 import App from '../App';
+import axios from 'axios';
+import { mockEvents } from '../mock-events';
 
 describe('<EventList />, component', () => {
   test('render correct number of events', () => {
-    const EventListWrapper = shallow(<EventList events={ [{ id: 1 }, { id:2 }, { id: 3 }, { id: 4 }] } />);
-    expect(EventListWrapper.find(Event)).toHaveLength(4);
+    const EventListWrapper = shallow(<EventList events={mockEvents.events} />);
+    expect(EventListWrapper.find(Event)).toHaveLength(19);
   });
 
   test('render correct list of events', () => {
     const AppWrapper = mount(<App />);
-    AppWrapper.setState({events: [{ id: 1 }, { id:2 }, { id: 3 }, { id: 4 }] });
-    expect(AppWrapper.find('.ul-eventlist')).toHaveLength(4);
+    AppWrapper.setState({ events: mockEvents.events });
+    expect(AppWrapper.find('.ul-eventlist')).toHaveLength(1);
     AppWrapper.unmount();
   });
 });

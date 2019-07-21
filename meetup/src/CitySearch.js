@@ -18,12 +18,11 @@ class CitySearch extends Component {
     this.props.updateEvents(lat, lon);
   }
 
-
   render() {
     return (
       <div className="city-search">
         <h1>Meetup Events</h1>
-        <p>enter a city</p>
+        <p>Search for a city:</p>
         <input
           type="text"
           className="city"

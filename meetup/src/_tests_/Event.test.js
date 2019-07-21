@@ -52,7 +52,7 @@ describe('<Event />, render', () => {
 
   test('render group name', () => {
     //const events = EventWrapper.state('events');
-  //  expect(EventWrapper.find('.group_name')).toHaveLength(1);
+    expect(EventWrapper.find('.group_name')).toHaveLength(1);
   });
 
   test('render rsrv count', () => {

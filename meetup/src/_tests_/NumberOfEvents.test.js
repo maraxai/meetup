@@ -6,7 +6,11 @@ describe('<NumberOfEvents />, component', () => {
   let NumberOfEventsWrapper;
 
   beforeAll(() => {
-    NumberOfEventsWrapper = shallow(<NumberOfEvents />);
+    NumberOfEventsWrapper = shallow(<NumberOfEvents numOfEventsListed={() => {}} />);
+  });
+
+  test('render number input', () => {
+    expect(NumberOfEventsWrapper.find('.eventlist')).toHaveLength(1);
   });
 
   test('default number of events listed is 32', () => {
@@ -17,9 +21,9 @@ describe('<NumberOfEvents />, component', () => {
     expect(NumberOfEventsWrapper.find('.numOfEventsListed'));
   });
 
-  test('state is rendered in textbox', () => {
-    const currentState = NumberOfEventsWrapper.state('numOfEventsListed');
-    expect(NumberOfEventsWrapper.find('.numOfEventsListed').prop('value')).toBe(currentState);
+  test('render state as number correctly', () => {
+    const numOfEvents = NumberOfEventsWrapper.state('numOfEventsListed');
+    expect(NumberOfEventsWrapper.find('.numOfEventsListed').prop('value')).toBe(numOfEvents);
   });
 
   test('textbox render is of type "number"', () => {

@@ -34,7 +34,7 @@ class Event extends Component {
                 <div>
                   <p className="description">{event.description}</p>
                   <p className="visibility">{event.visibility}</p>
-                  <p className="link">{event.link}</p>
+                  <p className="link"><a>{event.link}</a></p>
                 </div>
               </div>
               }
