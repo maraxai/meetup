@@ -21,6 +21,7 @@ class CitySearch extends Component {
   render() {
     return (
       <div className="city-search">
+        <img src="../public/meetup_logo.png" alt="Meetup logo" />
         <h1>Meetup Events</h1>
         <h3>Find Meetup events in the city of your choice.</h3>
         <p>Search for a city:</p>
