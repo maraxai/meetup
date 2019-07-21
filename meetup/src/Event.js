@@ -32,7 +32,7 @@ class Event extends Component {
                   <span>{event.venue.localized_country_name}</span>
                 </p>
                 <div>
-                  <p className="description">{event.description}</p>
+                  <div className="description" dangerouslySetInnerHTML={{ __html: event.description }} />
                   <p className="visibility">{event.visibility}</p>
                   <p className="link"><a>{event.link}</a></p>
                 </div>
