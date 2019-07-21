@@ -34,7 +34,7 @@ class Event extends Component {
                 <div>
                   <div className="description" dangerouslySetInnerHTML={{ __html: event.description }} />
                   <p className="visibility">{event.visibility}</p>
-                  <p className="link"><a>{event.link}</a></p>
+                  <a className="link" href={event.link}>Event Link</a>
                 </div>
               </div>
               }
