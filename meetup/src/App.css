@@ -13,6 +13,10 @@ ul {
   list-style: none;
 }
 
+.logo {
+  width: 100px;
+}
+
 p {
   margin: 5px 0;
 }
