@@ -21,9 +21,8 @@ class CitySearch extends Component {
   render() {
     return (
       <div className="city-search">
-        <h1>Meetup Events</h1>
-        <h3>Find Meetup events in the city of your choice.</h3>
-        <p>Search for a city:</p>
+        <h2>Find Meetup events in the city of your choice.</h2>
+        <p>Enter a city name:</p>
         <input
           type="text"
           className="city"
