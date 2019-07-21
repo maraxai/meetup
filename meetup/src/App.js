@@ -4,7 +4,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 //import Event from './Event';
 import NumberOfEvents from './NumberOfEvents';
-//import { getSuggetions } from './api';
+import { getSuggetions } from './api';
 //import { mockEvents } from './mock-events';
 import { getEvents } from './api';
 

@@ -33,7 +33,7 @@ async function getAccessToken() {
 
     if (!code) {
       // If we don't find any code, we need to redirect user to get it
-      window.location.href = 'https://secure.meetup.com/oauth2/authorize?client_id=t4rva9pn92dlc3v396d4u5ricj&response_type=code&redirect_uri=https://maraxai.github.io/meetup/';
+      window.location.href = 'https://secure.meetup.com/oauth2/authorize?client_id=t4rva9pn92dlc3v396d4u5ricj&response_type=code&redirect_uri=https://maraxai.github.io/meetup';
       return null;
     }
     return getOrRenewAccessToken('get', code);
