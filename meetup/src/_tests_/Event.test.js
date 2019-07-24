@@ -32,11 +32,11 @@ describe('<Event />, render', () => {
   });
 
   test('render list of events', () => {
-    expect(EventWrapper.find('.event-list')).toHaveLength(1);
+    expect(EventWrapper.find('.events')).toHaveLength(1);
   });
 
   test('render event data', () => {
-    EventWrapper.find('.event-list li');
+    EventWrapper.find('.events');
     expect(EventWrapper.state('showDetails')).toBe(false);
   });
 
@@ -61,7 +61,7 @@ describe('<Event />, render', () => {
   });
 
   test('render detail button', () => {
-    expect(EventWrapper.find('.showDetails'));
+    expect(EventWrapper.find('.detail-btn'));
   });
 
   test('details', () => {
@@ -70,7 +70,7 @@ describe('<Event />, render', () => {
   });
 
   test('click on button should change of state for showDetails', () => {
-    EventWrapper.find('.showDetails').simulate('click');
+    EventWrapper.find('.detail-btn').simulate('click');
     expect(EventWrapper.state('showDetails')).toBe(true);
   });
 })
