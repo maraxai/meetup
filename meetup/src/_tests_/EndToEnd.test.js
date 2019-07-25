@@ -7,11 +7,8 @@ describe('Show/hide an event\'s details', () => {
   beforeAll(async () => {
       browser = await puppeteer.launch();
       page = await browser.newPage();
-      await page.goto('http://localhost:3000');
+      await page.goto('http://localhost:3000/');
       await page.waitForSelector('.events');
-      if (window.location.href.startsWith('http://localhost')) {
-        return mockEvents.events;
-      }
   });
 
   afterAll(() => {
@@ -24,8 +21,10 @@ describe('Show/hide an event\'s details', () => {
   });
 
   test('user can expand an event to see its details', async () => {
-    await page.click('.events .detail-btn');
+    const events = await page.$('.events');
     const eventDetails = await page.$('.events .eventDetails');
+    expect(events).toHaveLength(19);
+    await page.click('.events .detail-btn');
     expect(eventDetails).toBeDefined();
   });
 
@@ -45,7 +44,7 @@ describe('Filter events by city', () => {
       if (window.location.href.startsWith('http://localhost')) {
         return mockEvents.events;
       }
-      await page.waitForSelector('.events');
+      await page.waitForSelector('.suggestions');
       await page.goto('http://localhost:3000');
   });
 
@@ -65,9 +64,9 @@ describe('Filter events by city', () => {
   });
 
   test('User can select a city from the suggested list.', async () => {
-    await page.click('.suggestions li');
+    const suggestions = await page.$('.suggestions');
+    expect(suggestions).toBeDefined();
     expect('.city').toBeDefined();
-
   });
 
 });

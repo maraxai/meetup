@@ -13,4 +13,4 @@ Scenario: User can expand an event to see its details
 Scenario: User can collapse an event to hide its details
   Given an event is opened, the details are shown
   When the user clicks on an event
-  Then the details of the selected event will show
+  Then the details of the selected event will collapse
