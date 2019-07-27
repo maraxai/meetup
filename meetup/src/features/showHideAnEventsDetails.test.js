@@ -10,47 +10,58 @@ const feature = loadFeature('./src/features/showHideAnEventsDetails.feature');
 defineFeature(feature, test => {
   test('By default, an event is collapsed', ({ given, when, then }) => {
     let AppWrapper;
-    given('user hasn’t opened any event', () => {
-      expect(AppWrapper).find('.eventDetails').toBeNull();
-    });
+    given('user opens the app', () => {
+      AppWrapper = mount(<App />);
+  });
 
-    when('user opens the app', () => {
-      AppWrapper = mount(<App />)
+    when('user hasn’t opened any event', () => {
+      expect(AppWrapper.find('.eventDetails')).toHaveLength(0);
     });
 
     then('the user should see the collapsed list of events', () => {
-      expect(AppWrapper.find('.events')).toHaveLength(1);
+      AppWrapper.update();
+      expect(AppWrapper.find('.events')).toHaveLength(mockEvents.events.length);
     });
   });
 
   test('User can expand an event to see its details', ({ given, when, then }) => {
-    let EventWrapper;
+    let AppWrapper;
     given('user hasn’t opened any event', () => {
-      expect(EventWrapper.find('.eventDetails')).toBeNull();
+      AppWrapper = mount(<App />);
     });
 
     when('the user clicks on an event', () => {
-      EventWrapper.find('.detail-btn').simulate('click');
-      expect(EventWrapper.find('.eventDetails')).toBe(true);
+      AppWrapper.update();
+      AppWrapper.find('.detail-btn').at(0).simulate('click');
     });
 
     then('the details of the selected event will show', () => {
-      expect(EventWrapper.find('.eventDetails'));
+      expect(AppWrapper.find('.eventDetails')).toHaveLength(1);
     });
   });
 
-  test('User can collapse an event to hide its details', ({ given, when, then }) => {
-    let EventWrapper;
-    given('an event is opened, the details are shown', () => {
-      expect(EventWrapper.find('.eventDetails')).toBe(true);
+  test('User can collapse an event to hide its details', ({ given, and, when, then }) => {
+
+    let AppWrapper;
+    given('user opens app', () => {
+      AppWrapper = mount(<App />);
     });
 
-    when('the user clicks on an event', () => {
-      EventWrapper.find('.detail-btn').simulate('click');
+    and('details of event are shown', () => {
+      AppWrapper.update();
+      AppWrapper.find('.detail-btn').at(0).simulate('click');
     });
 
-    then('the details of the selected event will collapse', () => {
-      expect(EventWrapper.find('.eventDetails')).toBe(false);
+    when('the user clicks on the details-button', () => {
+      AppWrapper.find('.detail-btn').at(0).simulate('click');
+    });
+
+    then('the details of the events are collapsed', () => {
+      expect(AppWrapper.find('.eventDetails')).toHaveLength(0);
+    });
+
+    and('only the list of events is shown', () => {
+      expect(AppWrapper.find('.events')).toHaveLength(mockEvents.events.length);
     });
   });
 });

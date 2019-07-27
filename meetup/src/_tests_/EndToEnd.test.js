@@ -7,7 +7,7 @@ describe('Show/hide an event\'s details', () => {
   beforeAll(async () => {
       browser = await puppeteer.launch();
       page = await browser.newPage();
-      await page.goto('http://localhost:3000/');
+      await page.goto('http://localhost:3000');
       await page.waitForSelector('.events');
   });
 
@@ -21,9 +21,7 @@ describe('Show/hide an event\'s details', () => {
   });
 
   test('user can expand an event to see its details', async () => {
-    const events = await page.$('.events');
     const eventDetails = await page.$('.events .eventDetails');
-    expect(events).toHaveLength(19);
     await page.click('.events .detail-btn');
     expect(eventDetails).toBeDefined();
   });
@@ -41,11 +39,8 @@ describe('Filter events by city', () => {
   beforeAll(async () => {
       browser = await puppeteer.launch();
       page = await browser.newPage();
-      if (window.location.href.startsWith('http://localhost')) {
-        return mockEvents.events;
-      }
-      await page.waitForSelector('.suggestions');
       await page.goto('http://localhost:3000');
+      await page.waitForSelector('.suggestions');
   });
 
   afterAll(() => {
