@@ -40,11 +40,4 @@ describe('<NumberOfEvents />, component', () => {
     NumberOfEventsWrapper.find('.numOfEventsListed').simulate('change', entry);
     expect(NumberOfEventsWrapper.state('numOfEventsListed')).toBe(7);
   });
-
-
-
-
-
-
-
 })
