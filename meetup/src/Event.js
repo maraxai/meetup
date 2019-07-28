@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { WarningAlert } from './Alert';
 
 class Event extends Component {
   state = {
@@ -7,7 +8,14 @@ class Event extends Component {
   };
 
   handleClick = () => {
-    this.setState({ showDetails: !this.state.showDetails })
+    this.setState({ showDetails: !this.state.showDetails });
+    const rsvpCount = this.props.event.yes_rsvp_count;
+    const rsvpMax = this.props.event.rsvp_limit;
+    if (rsvpCount > rsvpMax * 0.8)  {
+      this.setState({ infoText: `This event has already exceeded 80% of its guest capacity. The maximum number of attendees is ${rsvpMax}.` })
+    } else {
+      this.setState({ infoText: '' });
+    }
   }
 
   render() {
@@ -20,6 +28,7 @@ class Event extends Component {
         <p className="event_rsvp">{event.yes_rsvp_count} people signed up for this meeting</p>
         {this.state.showDetails &&
         <div className="eventDetails">
+        <WarningAlert text={this.state.infoText} /><br/>
           <p className="address">
             <span>{event.venue.name},</span>
             <span>{event.venue.address_1},</span>
