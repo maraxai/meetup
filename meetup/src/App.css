@@ -69,6 +69,7 @@ input[type="text"], input[type="number"] {
 .events {
   background-color: PapayaWhip ;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   padding: 10px 10px 20px;
   margin-bottom: 10px;
