@@ -7,6 +7,7 @@ import NumberOfEvents from './NumberOfEvents';
 import { getSuggestions } from './api';
 //import { mockEvents } from './mock-events';
 import { getEvents } from './api';
+import { WarningAlert } from './Alert';
 
 
 class App extends Component {
@@ -15,7 +16,8 @@ class App extends Component {
     lat: null,
     lon: null,
     page: null,
-    numOfEventsListed: null
+    numOfEventsListed: null,
+    infoText: ''
   }
 
   componentDidMount() {
@@ -42,9 +44,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <WarningAlert text={this.state.infoText} />
         <CitySearch updateEvents={this.updateEvents} />
-        <NumberOfEvents updateEvents={this.updateEvents}/>
-        <EventList events={this.state.events}/>
+        <NumberOfEvents updateEvents={this.updateEvents} />
+        <EventList events={this.state.events} />
       </div>
     );
   }

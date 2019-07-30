@@ -20,8 +20,6 @@ class CitySearch extends Component {
         this.setState({ infoText: ''});
       }
     });
-
-
   }
 
   handleItemClicked = (value, lat, lon) => {

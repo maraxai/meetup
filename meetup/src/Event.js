@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { WarningAlert } from './Alert';
+import { getEvents } from './api';
 
 class Event extends Component {
   state = {
     showDetails: false,
-    events: []
+    events: [],
   };
 
   handleClick = () => {
