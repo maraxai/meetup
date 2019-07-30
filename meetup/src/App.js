@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import moment from 'moment';
+import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
@@ -39,11 +41,45 @@ class App extends Component {
     }
   }
 
+  countEventsOnADate = (date) => {
+    let count = 0;
+    for (let i = 0; i < this.state.events.length; i += 1) {
+      if (this.state.events[i].local_date === date) {
+        count += 1;
+      }
+    }
+    return count;
+  }
+
+  getData = () => {
+    const next7Days = [];
+    const currentDate = moment();
+    for(let i = 0; i < 7; i += 1) {
+      currentDate.add(1, 'days');
+      const dateString = currentDate.format('YYYY-MM-DD');
+      const count = this.countEventsOnADate(dateString);
+      next7Days.push({ date: dateString, number: count })
+    }
+    return next7Days;
+  }
+
   render() {
     return (
       <div className="App">
         <CitySearch updateEvents={this.updateEvents} />
         <NumberOfEvents updateEvents={this.updateEvents} />
+        <ResponsiveContainer height={400}>
+          <ScatterChart width={800} height={250}
+            margin={{ top: 20, right: 20, bottom: 10, left: 10 }}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis type="category" dataKey="date" name="date" />
+            <YAxis type="number" dataKey="number" name="number of events" allowDecimals={false}/>
+            <ZAxis dataKey="z" range={[64, 144]} name="score" unit="km" />
+            <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+            <Legend />
+            <Scatter data={this.getData()} fill="#8884d8" />
+          </ScatterChart>
+          </ResponsiveContainer>
         <EventList events={this.state.events} />
       </div>
     );
