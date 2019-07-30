@@ -95,7 +95,6 @@ async function getEvents(lat, lon, page) {
   }
 
   if (!navigator.onLine) {
-    this.setState({ infoText: 'Please note that you are currently offline. The displayed events might not be up to date. You are unable to run a query.' })
     const events = localStorage.getItem('lastEvents');
     return JSON.parse(events);
   }
