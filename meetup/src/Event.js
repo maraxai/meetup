@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { WarningAlert } from './Alert';
 import { getEvents } from './api';
+import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
 class Event extends Component {
   state = {
@@ -12,15 +13,30 @@ class Event extends Component {
     this.setState({ showDetails: !this.state.showDetails });
     const rsvpCount = this.props.event.yes_rsvp_count;
     const rsvpMax = this.props.event.rsvp_limit;
-    if (rsvpCount > rsvpMax * 0.8)  {
-      this.setState({ infoText: `This event has already exceeded 80% of its guest capacity. The maximum number of attendees is ${rsvpMax}.` })
+    if (rsvpCount == rsvpMax)  {
+      this.setState({ infoText: `This event is completely booked.` })
     } else {
       this.setState({ infoText: '' });
     }
   }
 
+  getData() {
+    let reservations = this.props.event.yes_rsvp_count;
+    let vacancies = this.props.event.rsvp_limit - this.props.event.yes_rsvp_count;
+
+    if (typeof vacancies == 'number') {
+      return (
+        [
+          {name: 'reservations', value: reservations },
+          {name: 'vacancies', value: vacancies }
+        ]
+      );
+    }
+  }
+
   render() {
     const event = this.props.event;
+    let colors = ['red','green'];
     return (
       <div className="events">
         <p className="event_date-time">{event.local_time} - {event.local_date}</p>
@@ -29,6 +45,19 @@ class Event extends Component {
         <p className="event_rsvp">{event.yes_rsvp_count} people signed up for this meeting</p>
         {this.state.showDetails &&
         <div className="eventDetails">
+        <ResponsiveContainer height={400}>
+          <PieChart width={800} height={400}>
+          <Legend />
+            <Pie data={this.getData()} cx={200} cy={200} outerRadius={80} fill="#8884d8" label>
+            {
+              this.getData().map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={colors[index]}/>
+              ))
+            }
+            </Pie>
+            <Tooltip cursor={{ stroke: 'red', strokeWidth: 2 }} />
+          </PieChart>
+        </ResponsiveContainer>
         <WarningAlert text={this.state.infoText} /><br/>
           <p className="address">
             <span>{event.venue.name},</span>
