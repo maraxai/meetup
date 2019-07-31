@@ -24,14 +24,12 @@ class Event extends Component {
     let reservations = this.props.event.yes_rsvp_count;
     let vacancies = this.props.event.rsvp_limit - this.props.event.yes_rsvp_count;
 
-    if (typeof vacancies == 'number') {
-      return (
-        [
-          {name: 'reservations', value: reservations },
-          {name: 'vacancies', value: vacancies }
-        ]
-      );
-    }
+    return (
+      [
+        {name: 'reservations', value: reservations },
+        {name: 'vacancies', value: vacancies }
+      ]
+    );
   }
 
   render() {
@@ -47,15 +45,15 @@ class Event extends Component {
         <div className="eventDetails">
         <ResponsiveContainer height={400}>
           <PieChart width={800} height={400}>
-          <Legend />
-            <Pie data={this.getData()} cx={200} cy={200} outerRadius={80} fill="#8884d8" label>
+          <Legend verticalAlign="middle" align="left"/>
+            <Pie data={this.getData()} cx={200} cy={100} innerRadius={5} outerRadius={80} fill="#8884d8" label>
             {
               this.getData().map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={colors[index]}/>
               ))
             }
             </Pie>
-            <Tooltip cursor={{ stroke: 'red', strokeWidth: 2 }} />
+            <Tooltip />
           </PieChart>
         </ResponsiveContainer>
         <WarningAlert text={this.state.infoText} /><br/>
