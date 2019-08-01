@@ -35,6 +35,10 @@ class Event extends Component {
   render() {
     const event = this.props.event;
     let colors = ['red','green'];
+    let btnText = 'more';
+    if (this.state.showDetails) {
+      btnText = 'less';
+    }
     return (
       <div className="events">
         <p className="event_date-time">{event.local_time} - {event.local_date}</p>
@@ -43,10 +47,11 @@ class Event extends Component {
         <p className="event_rsvp">{event.yes_rsvp_count} people signed up for this meeting</p>
         {this.state.showDetails &&
         <div className="eventDetails">
-        <ResponsiveContainer height={400}>
-          <PieChart width={800} height={400}>
-          <Legend verticalAlign="middle" align="left"/>
-            <Pie data={this.getData()} cx={200} cy={100} innerRadius={5} outerRadius={80} fill="#8884d8" label>
+        { event.rsvp_limit &&
+        <ResponsiveContainer width="99%" aspect={3}>
+          <PieChart width={300} height={200}>
+          <Legend />
+            <Pie data={this.getData()} fill="#8884d8" label>
             {
               this.getData().map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={colors[index]}/>
@@ -56,7 +61,9 @@ class Event extends Component {
             <Tooltip />
           </PieChart>
         </ResponsiveContainer>
+        }
         <WarningAlert text={this.state.infoText} /><br/>
+        { event.venue &&
           <p className="address">
             <span>{event.venue.name},</span>
             <span>{event.venue.address_1},</span>
@@ -65,6 +72,7 @@ class Event extends Component {
             <span>{event.venue.city},</span>
             <span>{event.venue.localized_country_name}</span>
           </p>
+        }
           <div>
             <div className="description" dangerouslySetInnerHTML={{ __html: event.description }} />
             <p className="visibility">{event.visibility}</p>
@@ -72,7 +80,7 @@ class Event extends Component {
           </div>
         </div>
         }
-        <button className="detail-btn" onClick={this.handleClick}>more Details</button>
+        <button className="detail-btn" onClick={this.handleClick}>{`${btnText} Details`}</button>
       </div>
     )
   }
