@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/normalize.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <title>Receipe Details</title>
+  </head>
+  <body>
+    <h1>here should be the name of the receipe selected</h1>
+    <p id="receipeTitel"></p>
+    <h3>repositoryFood.typeOfDiet[i]</h3>
+    <p></p>
+    <h3>repositoryFood.nutrionalValues[i]</h3>
+    <p></p>
+    <h3>repositoryFood.pricePerMeal[i]</h3>
+    <p></p>
+    <h3>Ingredients:</h3>
+    ingredient1<br>
+    ingredient2<br>
+    ingredient3<br>
+    ingredient4<br>
+    ingredient5<br>
+    ingredient6<br>
+    ingredient7<br>
+
+    <h3>to compute the needed amount of ingredients for several people, enter the number and click OK</h3>
+      <h3>Ingredients:</h3>
+      ingredient1 * x<br>
+      ingredient2 * x<br>
+      ingredient3 * x<br>
+      ingredient4 * x<br>
+      ingredient5 * x<br>
+      ingredient6 * x<br>
+      ingredient7 * x<br>
+
+
+    <p id="#"></p>
+    <h2>List of Receipes</h2>
+    <p id="listReceipes">
+    </p>
+    <p>
+    <button id="vegetarian" onclick="vegetarianOnly()">vegetarian Receipes only</button>
+    <button id="omnivorian" onclick="omnivorianOnly()">Receipes with Meat</button>
+    <button id="vegan" onclick="veganOnly()">Vegan Receipes Only</button>
+    </p>
+
+    <script src="js/scripts-receipes.js"></script>
+  </body>
+</html>

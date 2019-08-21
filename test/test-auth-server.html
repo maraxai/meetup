@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+    <div>
+      <p>enter your authorization code and get a token</p>
+      <input id="code" type="text" placeholder="authorization code" />
+      <button id="getToken">Get Token</button>
+      <p id="result"></p>
+    </div>
+    <br>
+    <div>
+      <p>enter the above refresh-token</p>
+      <input id="refresh" type="text" placeholder="access token" />
+      <button id="refreshToken">Get Token</button>
+      <p id="refreshResult"></p>
+    </div>
+
+    <script type="text/javascript">
+      const getTokenElement = document.getElementById('getToken');
+      getTokenElement.onclick = function() {
+        const codeElement = document.getElementById('code');
+        const resultElement = document.getElementById('result');
+        const codeValue = codeElement.value;
+
+      //function endpoint, retrieved when running 'serverless deploy' in /auth-server
+      const lambdaURL = `https://vj77ibt40k.execute-api.eu-central-1.amazonaws.com/dev/api/token/${codeValue}`;
+
+      fetch(lambdaURL)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(json) {
+          resultElement.innerText = JSON.stringify(json);
+        });
+      }
+
+      const getNewTokenElement = document.getElementById('refreshToken');
+      getNewTokenElement.onclick = function() {
+        const refreshElement = document.getElementById('refresh');
+        const refreshTokenResult = document.getElementById('refreshResult');
+        const tokenValue = refreshElement.value;
+
+      //function endpoint, retrieved when running 'serverless deploy' in /auth-server
+      const lambdaURL = `https://vj77ibt40k.execute-api.eu-central-1.amazonaws.com/dev/api/refresh_token/${tokenValue}`;
+
+      fetch(lambdaURL)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(json) {
+          refreshTokenResult.innerText = JSON.stringify(json);
+        });
+      }
+    </script>
+  </body>
+</html>

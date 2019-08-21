@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/normalize.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="icon" type="image/png" href="img/flavicon_md_2.png" sizes="16x16" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <title>Recipe for Me</title>
+  </head>
+  <body>
+    <header>
+      <div>
+        <img src="img/MD_logo_abstract.png" class="profile_portrait" alt="Mike Dietz Portrait">
+      </div>
+    </header>
+    <section>
+      <div>
+        <div id="listRecipes">
+        <h2>Recipes for Me</h2>
+          select a recipe for detail information
+          <p><script src="js/scripts.js"></script>
+          </p>
+          <p>
+          </p>
+        </div>
+        <p>
+          <p id='veggieList'></p>
+        <div class='button-row'>
+          <button id="vegetarian" onclick="showVegetarianOnly()">vegetarian Receipes only</button>
+          <button id="omnivorian" onclick="showOmnivorianOnly()">Receipes with Meat</button>
+          <button id="vegan" onclick="showVeganOnly()">Vegan Receipes Only</button>
+          <button onclick="showAll()">All Recipes</button>
+        </div>
+        </p>
+        <div class="grid">
+          <div class="grid_item">
+            <h4>Recipe:</h4>
+          </div>
+          <div class="grid_item">
+            <p id="xx"></p>
+          </div>
+          <div class="grid_item">
+            <h4>Eating Style:</h4>
+          </div>
+          <div class="grid_item">
+            <p id="yy"></p>
+          </div>
+          <div class="grid_item">
+            <h4>Nutritional Values:</h4>
+          </div>
+          <div class="grid_item">
+            <p id="zz"></p>
+          </div>
+          <div class="grid_item">
+            <h4>Nutritional Diet:</h4>
+          </div>
+          <div class="grid_item">
+            <p id="vv"></p>
+          </div>
+          <div class="grid_item">
+            <h4>Ingredients:</h4>
+          </div>
+          <div class="grid_item">
+            <p id="ww"></p>
+          </div>
+          <div class="grid_item">
+            <h4>Costs per Portion:</h4>
+          </div>
+          <div class="grid_item">
+            <p id="uu"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

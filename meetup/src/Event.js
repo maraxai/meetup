@@ -48,7 +48,7 @@ class Event extends Component {
         {this.state.showDetails &&
         <div className="eventDetails">
         { event.rsvp_limit &&
-        <ResponsiveContainer width="99%" aspect={3}>
+        <ResponsiveContainer width="99%" height="99%">
           <PieChart width={300} height={200}>
           <Legend />
             <Pie data={this.getData()} fill="#8884d8" label>
